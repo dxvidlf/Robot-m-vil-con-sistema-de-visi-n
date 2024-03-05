@@ -281,16 +281,16 @@ La señal de referencia en este caso es una rampa ascendente y descendente. Al s
 
 Como podemos observar, exite un amplio rango de valores de tensión en los que no se produce movimiento en los motores. Este rango es mayor para el arranque que para la parada.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/ef5752fc-e72f-4e75-bed5-873314410e70" alt="">
+<img src="/fotos/im21.png" alt="">
 
 Estos datos se almacenarán en una serie de archivos:
 
 
-![image-1](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/d84d853e-8eda-47d1-8078-085c99c2e39f)
+![image-1](/fotos/im22.png)
 
 De estos datos, obtendremos las Look-Up Table
 
-![image-2](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/1fa9ce01-8a78-47a9-9b59-d0d8f7b1cd59)
+![image-2](/fotos/im23.png)
 
 
 Mostramos un pequeño video demostrativo de como se han calibrado los motores en el que se observa también la zona muerta de los mismos:
@@ -307,23 +307,23 @@ Este modelo de comportamiento se obtiene de la siguiente manera:
 
 Con el Piero conectado, creamos una señal de pulsos mediante signal builder y la simulamos, de manera que el robot realiza las acciones de arranque y parada varias veces. Esta gráfica la almacenamos en una tabla de datos para cada rueda. 
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/fbcb6a5d-9e75-4a36-8cba-b464e431baff" alt="">
+<img src="/fotos/im24.png" alt="">
 
 
 <img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/b1c0e7c6-49f9-4cb7-a34a-e6dc808d03f8" alt="">
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/c09b0444-f086-4a47-8509-42cbd664a6d0)
+![image](/fotos/im25.png)
 
 Obtenidos estos datos, los cargamos en "System Identification", un software que te permite analizar las funciones y elaborar funciones de transferencia ajustadas a nuestros datos.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/ea677cfa-8091-4b7f-a4a9-48cacf15adf3" alt="">
+<img src="/fotos/im26.png" alt="">
 
 
 Una vez aquí, calculamos diferentes funciones de transferencia, en función del número de polos y ceros
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/861486c9-0ebd-4122-9b92-3a98ac148c49" alt="">
+<img src="/fotos/im27.png" alt="">
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/50cea3ef-ebd2-48eb-921e-d40a8652eff3" alt="">
+<img src="/fotos/im28.png" alt="">
 
 Como vemos, aquí se representan las gráficas elegidas, en base a lo bien que se ajustan con con el modelo de entrada.
 Analizando los datos obtenidos llegamos a la siguiente conclusión:
@@ -337,9 +337,9 @@ Para el control de la velocidad en el bucle cerrado haremos algo parecido pero, 
 
 El modelo que usaremos para llevar a cabo este comportamiento será el siguiente:
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/ae0872d5-3f0d-410d-9d9f-f5233ce47bba)
+![image](/fotos/im29.png)
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/01548b05-ef15-4d31-b643-52391af77809" alt="Modulo MotorsG31">
+<img src="/fotos/im30.png" alt="Modulo MotorsG31">
 
 
 En este caso, el piero andará en linea recta a $2 m/s$ pero sí reaccionará a las perturbaciones corrigiendo la trayectoria y volverá a la velocidad lineal del robot establecida en la referencia ya que acumula el posible error en cada rueda.

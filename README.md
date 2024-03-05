@@ -50,7 +50,7 @@ Este proyecto para la asignatura Laboratorio de Robótica en el curso 2023-24. C
 
 En primer lugar, se creó un banco de pruebas para ir probando parte de la programación de los motores, sensores, etc.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/7b83e131-c530-452e-bcf4-3c4c22012277" alt="BancoDePruebas_Tapa" width="500" align="center">
+<img src="/fotos/im1.png" alt="BancoDePruebas_Tapa" width="500" align="center">
 
 Una
 Una vez tenemos la caja firmada por el profesor, desmontamos este banco de pruebas y comenzamos con el montaje.

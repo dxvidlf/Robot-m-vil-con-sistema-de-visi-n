@@ -277,20 +277,20 @@ Es necesario comprobar cómo se comportan nuestros motores según la tensión de
 <img src="/fotos/im18.png" alt="">
 La señal de referencia en este caso es una rampa ascendente y descendente. Al simular obtenemos el siguiente resultado:
 
-<img src="/fotos/im19.png" alt="">
+<img src="/fotos/rampa.png" alt="">
 
 Como podemos observar, exite un amplio rango de valores de tensión en los que no se produce movimiento en los motores. Este rango es mayor para el arranque que para la parada.
 
-<img src="/fotos/im20.png" alt="">
+<img src="/fotos/im19.png" alt="">
 
 Estos datos se almacenarán en una serie de archivos:
 
 
-![image-1](/fotos/im21.png)
+![image-1](/fotos/im20.png)
 
 De estos datos, obtendremos las Look-Up Table
 
-![image-2](/fotos/im22.png)
+![image-2](/fotos/im21.png)
 
 
 Mostramos un pequeño video demostrativo de como se han calibrado los motores en el que se observa también la zona muerta de los mismos:

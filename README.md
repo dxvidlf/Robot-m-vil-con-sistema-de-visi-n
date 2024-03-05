@@ -1,7 +1,6 @@
 
-# PieroDIYProject Grupo 31 - Laboratorio de Robótica 2023-24
+# Robot móvil con sistema de visión
 
-- [PieroDIYProject Grupo 31 - Laboratorio de Robótica 2023-24](#pierodiyproject-grupo-31---laboratorio-de-robótica-2023-24)
   - [Introducción](#introducción)
   - [Montaje](#montaje)
     - [Esquemas de montaje](#esquemas-de-montaje)
@@ -45,15 +44,15 @@
 
 ## Introducción
 
+Este proyecto para la asignatura Laboratorio de Robótica en el curso 2023-24. Consta de un robot móvil al cual se le puede predefinir un camino o controlarse manualmente, además de poder ver el punto de vista del robot a través de una interfaz diseñada en NodeRed, usando una cámara con un sistema de movimiento que también puede ser manejado a través de NodeRed o de Telegram.
 
 ## Montaje
-Se adjuntan, a continuación, los pasos del montaje del Piero-DIY:
 
-En primer lugar pusimos los componentes del piero montados a modo de banco de pruebas para ir probando parte de la programación de los motores, sensores, etc.
+En primer lugar, se creó un banco de pruebas para ir probando parte de la programación de los motores, sensores, etc.
 
 <img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/7b83e131-c530-452e-bcf4-3c4c22012277" alt="BancoDePruebas_Tapa" width="500" align="center">
 
-
+Una
 Una vez tenemos la caja firmada por el profesor, desmontamos este banco de pruebas y comenzamos con el montaje.
 La caja es demasiado alta así que la cortaremos a una altura más acorde:
  

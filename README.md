@@ -230,7 +230,7 @@ La primera ganancia es simplemente un ajuste para que los dos encoders midan lo 
 
 <img src="/fotos/im14.png" alt="Modulo MotorsG31">
 
-<img src="/fotos/im15.png" alt="Modulo MotorsG31">
+
 
 
 
@@ -252,13 +252,13 @@ Podemos ver el resultado de la calibración en el siguiente video:
 
 Necesitamos que nuestro piero sea capaza de seguir una referencia de velocidad en cada una de las ruedas. Para ello se diseña un modelo de control en bucle abierto como el siguiente:
 
-![image](/fotos/im16.png)
+![image](/fotos/im15.png)
 
 Su comportamiento es el que se espera y que analizamos a continuación:
 
-![image](/fotos/im17.png)
+![image](/fotos/im16.png)
 
-![image](/fotos/im18.png)
+![image](/fotos/im17.png)
 
 Como se ovserva en la primera fotografía, la velocidad de las ruedas aumenta hasta conseguir el valor de la referencia y, si sufre perturbaciones, vuelve hasta ese valor. En la segunda captura se muestran dos perturbaciones de la rueda derecha y una de la rueda izquierda.
 
@@ -274,10 +274,10 @@ En este modelo podemos ver dos subsistemas:
 #### Calibracion de los motores
 Es necesario comprobar cómo se comportan nuestros motores según la tensión de alimentación que les llega, por eso hemos realizado un sencillo test en el que aumentamos y disminuimos gradualmente la tensión y reflejamos el movimiento de las ruedas en una gráfica.
 
-<img src="/fotos/im19.png" alt="">
+<img src="/fotos/im18.png" alt="">
 La señal de referencia en este caso es una rampa ascendente y descendente. Al simular obtenemos el siguiente resultado:
 
-<img src="/fotos/im20.png" alt="">
+<img src="/fotos/im19.png" alt="">
 
 Como podemos observar, exite un amplio rango de valores de tensión en los que no se produce movimiento en los motores. Este rango es mayor para el arranque que para la parada.
 

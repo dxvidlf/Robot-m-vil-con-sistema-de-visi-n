@@ -322,7 +322,6 @@ Una vez aquí, calculamos diferentes funciones de transferencia, en función del
 
 <img src="/fotos/im26.png" alt="">
 
-<img src="/fotos/im27.png" alt="">
 
 Como vemos, aquí se representan las gráficas elegidas, en base a lo bien que se ajustan con con el modelo de entrada.
 Analizando los datos obtenidos llegamos a la siguiente conclusión:
@@ -336,17 +335,14 @@ Para el control de la velocidad en el bucle cerrado haremos algo parecido pero, 
 
 El modelo que usaremos para llevar a cabo este comportamiento será el siguiente:
 
-![image](/fotos/im29.png)
-
-<img src="/fotos/im30.png" alt="Modulo MotorsG31">
-
+![image](/fotos/im27.png)
 
 En este caso, el piero andará en linea recta a $2 m/s$ pero sí reaccionará a las perturbaciones corrigiendo la trayectoria y volverá a la velocidad lineal del robot establecida en la referencia ya que acumula el posible error en cada rueda.
 
 Así, probando los resultados, vemos que si lo ejecutamos y nos oponemos al movimiento de una rueda, el PID hace que se recupere y continúe en la dirección que iba.
 
 
-<img width="830" alt="Captura de pantalla 2024-01-11 a las 12 33 06" src="/fotos/im31.png">
+<img width="830" alt="Captura de pantalla 2024-01-11 a las 12 33 06" src="/fotos/im28.png">
 
 
 
@@ -361,25 +357,25 @@ Los subsistemas que se utilizan en este caso son el mismo que anteriormente para
 El controlador en este caso lo haremos con un PID para cada rueda en lugar de las look-up tables.
 
 
-<img width="1329" alt="Captura de pantalla 2024-01-11 a las 12 38 49" src="/fotos/im32.png">
+<img width="1329" alt="Captura de pantalla 2024-01-11 a las 12 38 49" src="/fotos/im29.png">
 
 
 Utilizo el PID tunner para establecer un tiempo de establecimiento de $1 segundo$ aproximadamente ya que así será suficientemente rápido y el tiempo de subida puede ser del orden de medio segundo, la sobreoscilación será $0%$. Hago lo mismo en los dos PID.
 
 
-<img width="1110" alt="Captura de pantalla 2024-01-11 a las 12 40 32" src="/fotos/im33.png">
+<img width="1110" alt="Captura de pantalla 2024-01-11 a las 12 40 32" src="/fotos/im30.png">
 
 
 Una vez se ha probado el modelo de forma experimental y con cambios en la orientación, hemos observado que el controlador tenía cierta sobreoscilación al intentar alcanzar una trayectoria dada. Por tanto se ha vuelto a ajustar, con el PID tunner, reduciendo un poco la ganancia derivativa entre otras cosas y se concluye usando el controlador PID con los parámetros que aparecen en la siguiente captura para ambas ruedas puesto que los resultados son muy buenos.
 
-![image](/fotos/im34.png)
+![image](/fotos/im31.png)
 
 
 ### Cinemática del Piero
 
 A continuación se describe el modelo de la cinemática a implementar en el Piero DIY. Será el que aparece en la siguiente imagen y se describe a continuación:
 
-![image](/fotos/im35.png)
+![image](/fotos/im32.png)
 
 Como entrada, en el esquema se están metiendo 2 constantes que son la velocidad lineal en $m/s$ y la velocidad angular en $rad/s$.
 Esto es lo que se trata de lograr con este modelo: conseguir que velocidades lineales y angulares sean interpretadas y reproducidas en nuestro piero que sólo entiende de velocidad de las ruedas por separado
@@ -391,17 +387,17 @@ Por tanto, los subsistemas que se han utilizado en este caso son:
 #### PieroCV
 Se trata de un control de velocidad como el que ya hemos hemos implementado anteriormente, usando el bucle cerrado para poder reaccionar ante perturbaciones.
 El subsistema es:
-![image](/fotos/im36.png)
+![image](/fotos/im33.png)
 
 Y toma la referencia de velocidad de la rueda izquierda y derecha para realizar el control.
 
 #### MCI: Modelo Cinemático Inverso
 Antes del control le aplicaremos el jacobiano inverso para convertir la velocidad cartesiana local en la velocidad de avance de las ruedas.
-![image](/fotos/im37.png)
+![image](/fotos/im34.png)
 
 #### MCD: Modelo Cinemático Directo
 Después del control le aplicaremos un modelo cinemático con el jacobiano directo para convertir la velocidad de las ruedas en velocidad cartesiana local.
-![image](/fotos/im38.png)
+![image](/fotos/mcd.png)
 
 Nota: Para la matriz de los jacobianos necesitamos un parámetro del piero, la distancia entre los ejes de las ruedas que, medida manualmente, establecemos que es $d = 0.22 m$
 
@@ -415,7 +411,7 @@ $$\dot{Y} = V_x \cdot sen\left(\alpha\right) - V_y \cdot cos\left(\alpha\right)$
 
 Y nos quedaría algo así:
 
-<img width="874" alt="Captura de pantalla 2024-01-11 a las 12 41 13" src="/fotos/im39.png">
+<img width="874" alt="Captura de pantalla 2024-01-11 a las 12 41 13" src="/fotos/im35.png">
 
 #### Control del modelo (Simulación o Hardware)
 
@@ -424,7 +420,7 @@ Si ponemos como constantes de entrada:
   - Velocidad angular: $\frac{\pi}{5} rad/s$
 
 Y hacemos la simulación (durante unos 5 segundos), monitoreando el robot real, obtenemos lo que esperamos, el robot anda hacia adelante y gira a la izquierda, describiendo la siguiente trayectoria con la odometría:
-![image](/fotos/im40.png)
+![image](/fotos/im36.png)
 
 También mostramos un video del comportamiento en el robot real
 
@@ -436,13 +432,13 @@ Por último, para conseguir que nuestro piero sea completamente controlable, ten
 
 Añadiremos, entonces, un control de orientación para que, en lugar de tener la velocidad lineal y angular como constantes, la velocidad angular esté controlada mediante un controlador (PID) que actua sobre el error en la orientación medida del modelo real del Piero. El modelo sería similar al anterior pero con este controlador para lograr el cambio de orientación
 
-<img width="1438" alt="Captura de pantalla 2024-01-11 a las 12 42 05" src="/fotos/im41.png">
+<img width="1438" alt="Captura de pantalla 2024-01-11 a las 12 42 05" src="/fotos/im37.png">
 
 Es importante que el PID tenga límites en la saturación. En este caso le hemos puesto el límite superior en 3 y el inferior en -3. Estos valores dependen de los motores y de la velocidad máxima que querremos. En este caso se limitará a unos 0.3 m/s
 
 Por ejemplo, si ejecutamos la simulación en el piero y monitoreamos un cambio de orientación de $0$ a $\frac{\pi}{2} rad$, observamos que el controlador actúa hasta que se ha logrado establecer el ángulo en $90^o$.
 
-![image](/fotos/im42.png)
+![image](/fotos/im38.png)
 
 Teniendo este modelo, vamos a ver si podemos corregir algo del posible error que se puede cometer por la medida de la distancia entre ejes de forma manual (que establecimos previamente en $d = 0.22 m$).
 
@@ -461,7 +457,7 @@ Tras probar varias veces, acabamos dando las 10 vueltas exactas (como se aprecia
 
 Vemos entonces, que se ha corregido el error en la orientación haciendo el mismo giro de 90 grados.
 
-![image](/fotos/im43.png)
+![image](/fotos/im39.png)
  
 
 
@@ -470,7 +466,7 @@ A continuación se detallarán una serie de modelos que proporcionarán al Piero
 
 ### Salir de clase con Signal Builder
 
-<img src="/fotos/im44.png" alt="SignalBuilder">
+<img src="/fotos/im40.png" alt="SignalBuilder">
 
 Este modelo es el primero que se implementó, y el más rudimentario. 
 Directamente a través de un generador de señales (Signal Builder), se crea una para la velocidad lineal y otra para la angular. Esta gráfica representa el valor de salida que estará enviando a lo largo del tiempo.
@@ -479,16 +475,16 @@ Es muy complicado definir una trayectoria precisa mediante este método, ya que 
 ### Salir de clase con Matlab Function
 
 
-<img src="/fotos/im45.png" alt="waypoints">
+<img src="/fotos/im41.png" alt="waypoints">
 
 El modelo Salir de clase con Matlaf Function hace uso del bloque Matlab function, al que se le ha programado un pequeño algoritmo de Pure Pursuit.
 
-<img src="/fotos/im46.png" alt="MF">
+<img src="/fotos/im42.png" alt="MF">
 
 Como podemos ver en esta imagen ampliada, la trayectoria pasa directamente a la variable "camino", la posición x e y vienen de la odometría, y la i, representa la iteración por donde va respecto a la trayectoria.
 
 
-<img src="/fotos/im47.png" alt="MF">
+<img src="/fotos/im43.png" alt="MF">
 
 Este bloque tomaraá como entrada la matriz de puntos predefinida y la posición X,Y del robot. Como salida, se encarga de proporcionar valores de velocidad lineal y angular adecuados para seguir la trayectoria.
 
@@ -498,10 +494,10 @@ Hemos hecho un par de intentos y no funciona mal pero hemos obtenido algunos res
 
 ### Salir de clase con Waypoints
 
-<img src="/fotos/im48.png" alt="waypoints">
+<img src="/fotos/im44.png" alt="waypoints">
 El modelo de Salir de clase con Waypoints hace uso del bloque Pure Pursuit. Este algoritmo es muy utilizados en sistemas de conducción autónoma, donde se proporciona al robot comandos de velocidad lineal y angular para perseguir una trayectoria predefinida con puntos x e y.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/5bafc313-3558-472d-afe9-73bbd95c5f0e" alt="XY">
+<img src="/fotos/im45.png" alt="XY">
 
 Como podemos observar en la simulación, el modelo es preciso.
 
@@ -511,7 +507,7 @@ El objetivo de este modelo es que el PIERO salga de clase por sí mismo a partir
 
 Stateflow es una herramienta de modelado de sistemas dinámicos desarrollada por MathWorks. Permite al usuario diseñar, simular y analizar sistemas de tiempo discreto y continuo mediante el uso de diagramas de estados y transiciones, funciones y tablas de eventos. Es utilizado principalmente en aplicaciones de control, automatización, procesamiento de señales y análisis de sistemas complejos. Stateflow se integra con otros productos de MathWorks, como Simulink, para proporcionar una solución completa de modelado y simulación.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/ff36d2b6-d3ed-40da-9ab6-f428130c4653" alt="waypoints">
+<img src="/fotos/im46.png" alt="waypoints">
 
 A la entrada del diagrama tenemos la odometría de nuestro robot; y, sabiendo su posición, podemos enviar comandos de velocidad para cubrir distancias específicas tanto lineales como angulares. De esta manera programamos la trayectoria completa deseada.
 
@@ -530,17 +526,17 @@ Es importante destacar que tanto Matlab como State Flow han sido empleados en mo
 
 El modelo de State Flow seleccionado para la tarea de esquivar obstáculos será crucial en la autonomía de PIERO, permitiéndole tomar decisiones dinámicas en tiempo real para sortear cualquier impedimento que pueda surgir en su camino.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/a7dfca92-cdbe-4b5e-b8e5-088e661849ef" alt="waypoints">
+<img src="/fotos/im47.png" alt="waypoints">
 
 En esta imagen se implementa el control 
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/a9048b6c-49a8-46a2-856e-9935f7bb182f" alt="waypoints">
+<img src="/fotos/im48.png" alt="waypoints">
 El bloque Sonars, nos da las medidas de los sensores, y según esta, se señalizará con el bloque de señalización. Por último, se realizará el control reactivo mediante el StateFlow.
 El otro circuito que se muestra, es el propio modelo de movimiento del Piero, controlado esta vez por el modulo pure pursuit, con la trayectoria predefinida en la matriz.
 
 
 Al simular el Piero con la trayectoria predefinida obtenemos la siguiente gráfica:
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/607454fc-9f49-40c1-8b2e-258069078baf" alt="waypoints">
+<img src="/fotos/im49.png" alt="waypoints">
 Como se puede apreciar en la gráfica, el control implementado es bastante preciso y nos permite realizar trayectorias específicas esquivando obstáculos con gran habilidad. Es por eso que el método implementado en el Piero será este.
 
 [![Video demostratvo Salir de clase con obstáculos](https://img.youtube.com/vi/SUVn5_DVqa4/0.jpg)](https://www.youtube.com/watch?v=SUVn5_DVqa4)

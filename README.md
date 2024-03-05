@@ -281,16 +281,16 @@ La señal de referencia en este caso es una rampa ascendente y descendente. Al s
 
 Como podemos observar, exite un amplio rango de valores de tensión en los que no se produce movimiento en los motores. Este rango es mayor para el arranque que para la parada.
 
-<img src="/fotos/im21.png" alt="">
+<img src="/fotos/im20.png" alt="">
 
 Estos datos se almacenarán en una serie de archivos:
 
 
-![image-1](/fotos/im22.png)
+![image-1](/fotos/im21.png)
 
 De estos datos, obtendremos las Look-Up Table
 
-![image-2](/fotos/im23.png)
+![image-2](/fotos/im22.png)
 
 
 Mostramos un pequeño video demostrativo de como se han calibrado los motores en el que se observa también la zona muerta de los mismos:
@@ -307,23 +307,23 @@ Este modelo de comportamiento se obtiene de la siguiente manera:
 
 Con el Piero conectado, creamos una señal de pulsos mediante signal builder y la simulamos, de manera que el robot realiza las acciones de arranque y parada varias veces. Esta gráfica la almacenamos en una tabla de datos para cada rueda. 
 
-<img src="/fotos/im24.png" alt="">
+<img src="/fotos/im23.png" alt="">
 
 
 <img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/b1c0e7c6-49f9-4cb7-a34a-e6dc808d03f8" alt="">
 
-![image](/fotos/im25.png)
+![image](/fotos/im24.png)
 
 Obtenidos estos datos, los cargamos en "System Identification", un software que te permite analizar las funciones y elaborar funciones de transferencia ajustadas a nuestros datos.
 
-<img src="/fotos/im26.png" alt="">
+<img src="/fotos/im25.png" alt="">
 
 
 Una vez aquí, calculamos diferentes funciones de transferencia, en función del número de polos y ceros
 
-<img src="/fotos/im27.png" alt="">
+<img src="/fotos/im26.png" alt="">
 
-<img src="/fotos/im28.png" alt="">
+<img src="/fotos/im27.png" alt="">
 
 Como vemos, aquí se representan las gráficas elegidas, en base a lo bien que se ajustan con con el modelo de entrada.
 Analizando los datos obtenidos llegamos a la siguiente conclusión:

@@ -56,25 +56,25 @@ Una
 Una vez tenemos la caja firmada por el profesor, desmontamos este banco de pruebas y comenzamos con el montaje.
 La caja es demasiado alta así que la cortaremos a una altura más acorde:
  
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/6f1feca4-fafe-4200-a8e4-44e676c9aec1" alt="Montaje 0" width="500" align="center">
+<img src="/fotos/im2.jpeg" alt="Montaje 0" width="500" align="center">
 
 Una vez cortada, presentamos y marcamos donde queremos colocar los componentes dentro de la caja:
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/e8a9b6f0-eb56-4f47-a389-5bd3d5e35cba" alt="Montaje 1" width="500" align="center">
+<img src="/fotos/im3.jpeg" alt="Montaje 1" width="500" align="center">
 
 Comenzamos a poner los soportes para los motores y el medidor de voltaje en la caja, haciendo sus respectivos agujeros y pegamos o atornillamos los elementos en la caja:
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/7e2d12e9-5a21-4b01-8ccb-ff72e3107fb7" alt="Montaje 3" width="400" align="center">
+<img src="/fotos/im4.jpeg" alt="Montaje 3" width="400" align="center">
 
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/c3bec6bd-0d3a-47c8-8ced-30a340d6717d" alt="Montaje 4" width="400" align="center">
+<img src="/fotos/im5.jpeg" alt="Montaje 4" width="400" align="center">
 
 Por último, realizamos todas las conexiones como se precisa en este esquema:
 
 ### Esquemas de montaje
 
 
-<img width="1131" alt="Captura de pantalla 2024-01-11 a las 20 21 14" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/ba9d9e06-7b70-46c2-bee3-36e802767a1d">
+<img width="1131" alt="Captura de pantalla 2024-01-11 a las 20 21 14" src="/fotos/im6.jpeg">
 
 
 
@@ -115,7 +115,7 @@ legend("Recta ideal", "Recta experimental (L)", "Recta experimental (R)",'Locati
 hold off
 ```
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780545/e5c5df32-51ff-439d-8a15-0922776a0231" alt="Gráfica rectas ideales vs experimentales">
+<img src="/fotos/im7.jpeg" alt="Gráfica rectas ideales vs experimentales">
 
 
 Ahora, realizamos una regresión lineal para obtener la ecuacion de ajuste de los datos experimentales de cada sensor.
@@ -147,7 +147,7 @@ legend("Recta ideal","Recta experimental ajustada (L)", "Recta experimental ajus
 hold off
 ```
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780545/cfebd189-7147-4493-818c-2ce952ab4edd" alt="Gráfica rectas de regresión">
+<img src="/fotos/im8.jpeg" alt="Gráfica rectas de regresión">
  
 Para ajustar la recta del sensor a la teórica, realizaremos un ajuste de 0 y de ganancia:
 
@@ -163,7 +163,7 @@ Como resultado en la salida obtendremos una representación de la distancia medi
 
 El diagrama implementado en SIMULINK es el siguiente:
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/02b28af8-1ccb-43de-bb8e-fce66550cf24" alt="Modelo Sonars">
+<img src="/fotos/im9.jpeg" alt="Modelo Sonars">
 
 ### Senalizacion usando LEDS
 Para la implementación de un sistema de señalización adecuado que defina claramente los estados en los que se encuentra el Piero, haremos uso del siguiente diagrama: 
@@ -187,7 +187,7 @@ Para la implementación de un sistema de señalización adecuado que defina clar
 Esto lo implementaremos mediante el siguiente diagrama de SIMULINK, que será un Subsystem que tendrá como entrada un dato binario de 4 bits.
 </p>
 <h1></h1>
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/5e31ccb4-4b6c-4003-90c9-43a7af413e64" alt="Módulo Senalizacion">
+<img src="/fotos/im10.jpeg" alt="Módulo Senalizacion">
 
 <br>Colocamos para cada bit un bloque BitWise y un Boolean, los cuales nos permiten examinar y utilizar el valor de ese bit.
 En el caso de la intermitencia, colocamos un bloque Switch para diferenciar los casos de Intermitencia (tren de pulsos) o Estable (bloque constante).

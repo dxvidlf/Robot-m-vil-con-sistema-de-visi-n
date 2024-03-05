@@ -307,10 +307,9 @@ Este modelo de comportamiento se obtiene de la siguiente manera:
 
 Con el Piero conectado, creamos una señal de pulsos mediante signal builder y la simulamos, de manera que el robot realiza las acciones de arranque y parada varias veces. Esta gráfica la almacenamos en una tabla de datos para cada rueda. 
 
+<img src="/fotos/im22.png" alt="">
+
 <img src="/fotos/im23.png" alt="">
-
-
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/b1c0e7c6-49f9-4cb7-a34a-e6dc808d03f8" alt="">
 
 ![image](/fotos/im24.png)
 

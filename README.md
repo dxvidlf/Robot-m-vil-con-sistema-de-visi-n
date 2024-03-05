@@ -437,13 +437,13 @@ Por último, para conseguir que nuestro piero sea completamente controlable, ten
 
 Añadiremos, entonces, un control de orientación para que, en lugar de tener la velocidad lineal y angular como constantes, la velocidad angular esté controlada mediante un controlador (PID) que actua sobre el error en la orientación medida del modelo real del Piero. El modelo sería similar al anterior pero con este controlador para lograr el cambio de orientación
 
-<img width="1438" alt="Captura de pantalla 2024-01-11 a las 12 42 05" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/85fe43db-f5d6-417c-95a9-e9f9e9ea928a">
+<img width="1438" alt="Captura de pantalla 2024-01-11 a las 12 42 05" src="/fotos/im41.png">
 
 Es importante que el PID tenga límites en la saturación. En este caso le hemos puesto el límite superior en 3 y el inferior en -3. Estos valores dependen de los motores y de la velocidad máxima que querremos. En este caso se limitará a unos 0.3 m/s
 
 Por ejemplo, si ejecutamos la simulación en el piero y monitoreamos un cambio de orientación de $0$ a $\frac{\pi}{2} rad$, observamos que el controlador actúa hasta que se ha logrado establecer el ángulo en $90^o$.
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/9b61556a-605e-4908-90f5-8be980611a3c)
+![image](/fotos/im42.png)
 
 Teniendo este modelo, vamos a ver si podemos corregir algo del posible error que se puede cometer por la medida de la distancia entre ejes de forma manual (que establecimos previamente en $d = 0.22 m$).
 
@@ -462,7 +462,7 @@ Tras probar varias veces, acabamos dando las 10 vueltas exactas (como se aprecia
 
 Vemos entonces, que se ha corregido el error en la orientación haciendo el mismo giro de 90 grados.
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/fc4331ba-b43a-4ac8-94e9-22b0e5fccfe9)
+![image](/fotos/im43.png)
  
 
 
@@ -471,7 +471,7 @@ A continuación se detallarán una serie de modelos que proporcionarán al Piero
 
 ### Salir de clase con Signal Builder
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/1b6e65d1-6949-432e-a8db-7e9187f3466e" alt="SignalBuilder">
+<img src="/fotos/im44.png" alt="SignalBuilder">
 
 Este modelo es el primero que se implementó, y el más rudimentario. 
 Directamente a través de un generador de señales (Signal Builder), se crea una para la velocidad lineal y otra para la angular. Esta gráfica representa el valor de salida que estará enviando a lo largo del tiempo.
@@ -480,16 +480,16 @@ Es muy complicado definir una trayectoria precisa mediante este método, ya que 
 ### Salir de clase con Matlab Function
 
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/050cedc0-b910-4944-a2e1-df82eafc195c" alt="waypoints">
+<img src="/fotos/im45.png" alt="waypoints">
 
 El modelo Salir de clase con Matlaf Function hace uso del bloque Matlab function, al que se le ha programado un pequeño algoritmo de Pure Pursuit.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/e253f826-9fc4-4400-aa83-c610d824c052" alt="MF">
+<img src="/fotos/im46.png" alt="MF">
 
 Como podemos ver en esta imagen ampliada, la trayectoria pasa directamente a la variable "camino", la posición x e y vienen de la odometría, y la i, representa la iteración por donde va respecto a la trayectoria.
 
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/4e4621c6-b4a8-4e7d-8144-92bdf4e2b5fb" alt="MF">
+<img src="/fotos/im47.png" alt="MF">
 
 Este bloque tomaraá como entrada la matriz de puntos predefinida y la posición X,Y del robot. Como salida, se encarga de proporcionar valores de velocidad lineal y angular adecuados para seguir la trayectoria.
 
@@ -499,7 +499,7 @@ Hemos hecho un par de intentos y no funciona mal pero hemos obtenido algunos res
 
 ### Salir de clase con Waypoints
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/b4c160ad-f425-46e8-9102-0a1d6c8ce836" alt="waypoints">
+<img src="/fotos/im48.png" alt="waypoints">
 El modelo de Salir de clase con Waypoints hace uso del bloque Pure Pursuit. Este algoritmo es muy utilizados en sistemas de conducción autónoma, donde se proporciona al robot comandos de velocidad lineal y angular para perseguir una trayectoria predefinida con puntos x e y.
 
 <img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/5bafc313-3558-472d-afe9-73bbd95c5f0e" alt="XY">

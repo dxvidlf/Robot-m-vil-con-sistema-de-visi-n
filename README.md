@@ -74,7 +74,7 @@ Por último, realizamos todas las conexiones como se precisa en este esquema:
 ### Esquemas de montaje
 
 
-<img width="1131" alt="Captura de pantalla 2024-01-11 a las 20 21 14" src="/fotos/im6.jpeg">
+<img width="1131" alt="Captura de pantalla 2024-01-11 a las 20 21 14" src="/fotos/im6.png">
 
 
 
@@ -115,7 +115,7 @@ legend("Recta ideal", "Recta experimental (L)", "Recta experimental (R)",'Locati
 hold off
 ```
 
-<img src="/fotos/im7.jpeg" alt="Gráfica rectas ideales vs experimentales">
+<img src="/fotos/im7.png" alt="Gráfica rectas ideales vs experimentales">
 
 
 Ahora, realizamos una regresión lineal para obtener la ecuacion de ajuste de los datos experimentales de cada sensor.
@@ -147,7 +147,7 @@ legend("Recta ideal","Recta experimental ajustada (L)", "Recta experimental ajus
 hold off
 ```
 
-<img src="/fotos/im8.jpeg" alt="Gráfica rectas de regresión">
+<img src="/fotos/im8.png" alt="Gráfica rectas de regresión">
  
 Para ajustar la recta del sensor a la teórica, realizaremos un ajuste de 0 y de ganancia:
 
@@ -163,7 +163,7 @@ Como resultado en la salida obtendremos una representación de la distancia medi
 
 El diagrama implementado en SIMULINK es el siguiente:
 
-<img src="/fotos/im9.jpeg" alt="Modelo Sonars">
+<img src="/fotos/im9.png" alt="Modelo Sonars">
 
 ### Senalizacion usando LEDS
 Para la implementación de un sistema de señalización adecuado que defina claramente los estados en los que se encuentra el Piero, haremos uso del siguiente diagrama: 
@@ -187,7 +187,7 @@ Para la implementación de un sistema de señalización adecuado que defina clar
 Esto lo implementaremos mediante el siguiente diagrama de SIMULINK, que será un Subsystem que tendrá como entrada un dato binario de 4 bits.
 </p>
 <h1></h1>
-<img src="/fotos/im10.jpeg" alt="Módulo Senalizacion">
+<img src="/fotos/im10.png" alt="Módulo Senalizacion">
 
 <br>Colocamos para cada bit un bloque BitWise y un Boolean, los cuales nos permiten examinar y utilizar el valor de ese bit.
 En el caso de la intermitencia, colocamos un bloque Switch para diferenciar los casos de Intermitencia (tren de pulsos) o Estable (bloque constante).
@@ -198,13 +198,13 @@ El video demostrativo de la señalización led de los obstáculos es el siguient
 
 Este modelo se incluirá en los demás en forma de subsustema:
 
- <img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/cc004879-1fb3-482c-a949-3d1242f1a82d" alt="Módulo Senalizacion">
+ <img src="/fotos/im11.png" alt="Módulo Senalizacion">
 
 ### Motores
 
 Para el modelado de los motores se han creado dos módulos, uno para cada rueda. El diagrama utilizado es el siguiente:
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/2c0d6d2e-4e8e-4f5f-a0fa-08b1ba6b4bdf" alt="Modulo MotorsG31">
+<img src="/fotos/im12.png" alt="Modulo MotorsG31">
 
 Cada uno de los circuitos cuenta con tres digital output: uno para ir hacia delante, otro que va hacia detrás y un enable que lo habilita.
 
@@ -213,7 +213,7 @@ Cada uno de los circuitos cuenta con tres digital output: uno para ir hacia dela
 
 El siguiente segmento presenta el desarrollo de un nuevo programa destinado a capacitar al robot Piero para detectar y evitar obstáculos mediante el uso de los sensores ubicados en la parte delantera. El programa actúa sobre los motores responsables del movimiento de las ruedas para modificar la dirección del robot y sortear obstáculos de manera efectiva.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/db7bfaa5-7404-4fde-829f-861235db5b0f" alt="Modelo Evita obstáculos">
+<img src="/fotos/im13.png" alt="Modelo Evita obstáculos">
 
 
 La implementación de este programa se basa en tres modelos trabajados previamente: el Modelado de Motores, el Modelado de Sensores y el Modelado de Señalización. Estos modelos proporcionan la base necesaria para que el Piero pueda reconocer obstáculos a través de sus sensores y tomar decisiones en tiempo real para evitar colisiones con objetos y paredes.
@@ -228,9 +228,9 @@ Los motores de nuestro Piero cuentan con encoders que nos permiten medir la velo
 
 La primera ganancia es simplemente un ajuste para que los dos encoders midan lo mismo. La segunda ganancia realiza un cambio de unidades, multiplicando por "pi", por el radio de la rueda y dividido por el número de pulsos que nos da el encoder al dar una vuelta completa a la rueda. De esta manera conseguimos expresar dicha medida en metros. Por último se deriva la medida de la posición para obtener la velocidad.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/8f24cb93-f026-4d16-a5a4-f16e8a644dac" alt="Modulo MotorsG31">
+<img src="/fotos/im14.png" alt="Modulo MotorsG31">
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/01548b05-ef15-4d31-b643-52391af77809" alt="Modulo MotorsG31">
+<img src="/fotos/im15.png" alt="Modulo MotorsG31">
 
 
 
@@ -252,13 +252,13 @@ Podemos ver el resultado de la calibración en el siguiente video:
 
 Necesitamos que nuestro piero sea capaza de seguir una referencia de velocidad en cada una de las ruedas. Para ello se diseña un modelo de control en bucle abierto como el siguiente:
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/e4197d47-ec75-4cca-a0d9-35212e16a6e5)
+![image](/fotos/im16.png)
 
 Su comportamiento es el que se espera y que analizamos a continuación:
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/a89c9a65-3a23-4c17-8709-e49605b1bcda)
+![image](/fotos/im17.png)
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/af48b379-8bd1-42d8-a2c0-c6eb0bfa90c6)
+![image](/fotos/im18.png)
 
 Como se ovserva en la primera fotografía, la velocidad de las ruedas aumenta hasta conseguir el valor de la referencia y, si sufre perturbaciones, vuelve hasta ese valor. En la segunda captura se muestran dos perturbaciones de la rueda derecha y una de la rueda izquierda.
 
@@ -274,10 +274,10 @@ En este modelo podemos ver dos subsistemas:
 #### Calibracion de los motores
 Es necesario comprobar cómo se comportan nuestros motores según la tensión de alimentación que les llega, por eso hemos realizado un sencillo test en el que aumentamos y disminuimos gradualmente la tensión y reflejamos el movimiento de las ruedas en una gráfica.
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/2dee992c-61a0-4afb-aea9-4d6a189a0a1d" alt="">
+<img src="/fotos/im19.png" alt="">
 La señal de referencia en este caso es una rampa ascendente y descendente. Al simular obtenemos el siguiente resultado:
 
-<img src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780818/c74d9f3f-710c-42cb-bb8a-e74b358812c0" alt="">
+<img src="/fotos/im20.png" alt="">
 
 Como podemos observar, exite un amplio rango de valores de tensión en los que no se produce movimiento en los motores. Este rango es mayor para el arranque que para la parada.
 

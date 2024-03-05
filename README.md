@@ -347,7 +347,7 @@ En este caso, el piero andará en linea recta a $2 m/s$ pero sí reaccionará a 
 Así, probando los resultados, vemos que si lo ejecutamos y nos oponemos al movimiento de una rueda, el PID hace que se recupere y continúe en la dirección que iba.
 
 
-<img width="830" alt="Captura de pantalla 2024-01-11 a las 12 33 06" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/9d158c56-cb4a-4ebf-be3a-267c519f9953">
+<img width="830" alt="Captura de pantalla 2024-01-11 a las 12 33 06" src="/fotos/im31.png">
 
 
 
@@ -362,25 +362,25 @@ Los subsistemas que se utilizan en este caso son el mismo que anteriormente para
 El controlador en este caso lo haremos con un PID para cada rueda en lugar de las look-up tables.
 
 
-<img width="1329" alt="Captura de pantalla 2024-01-11 a las 12 38 49" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/44897250-a131-4083-9d43-cc6bf0a8cdb4">
+<img width="1329" alt="Captura de pantalla 2024-01-11 a las 12 38 49" src="/fotos/im32.png">
 
 
 Utilizo el PID tunner para establecer un tiempo de establecimiento de $1 segundo$ aproximadamente ya que así será suficientemente rápido y el tiempo de subida puede ser del orden de medio segundo, la sobreoscilación será $0%$. Hago lo mismo en los dos PID.
 
 
-<img width="1110" alt="Captura de pantalla 2024-01-11 a las 12 40 32" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/b4191440-04fd-46bd-9f76-4999e9003c8d">
+<img width="1110" alt="Captura de pantalla 2024-01-11 a las 12 40 32" src="/fotos/im33.png">
 
 
 Una vez se ha probado el modelo de forma experimental y con cambios en la orientación, hemos observado que el controlador tenía cierta sobreoscilación al intentar alcanzar una trayectoria dada. Por tanto se ha vuelto a ajustar, con el PID tunner, reduciendo un poco la ganancia derivativa entre otras cosas y se concluye usando el controlador PID con los parámetros que aparecen en la siguiente captura para ambas ruedas puesto que los resultados son muy buenos.
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/213c37bc-da4f-4f29-9f39-71cbaf65a7fc)
+![image](/fotos/im34.png)
 
 
 ### Cinemática del Piero
 
 A continuación se describe el modelo de la cinemática a implementar en el Piero DIY. Será el que aparece en la siguiente imagen y se describe a continuación:
 
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/8c8f249f-d5ca-49ed-9fab-76d8c7ced6d5)
+![image](/fotos/im35.png)
 
 Como entrada, en el esquema se están metiendo 2 constantes que son la velocidad lineal en $m/s$ y la velocidad angular en $rad/s$.
 Esto es lo que se trata de lograr con este modelo: conseguir que velocidades lineales y angulares sean interpretadas y reproducidas en nuestro piero que sólo entiende de velocidad de las ruedas por separado
@@ -392,17 +392,17 @@ Por tanto, los subsistemas que se han utilizado en este caso son:
 #### PieroCV
 Se trata de un control de velocidad como el que ya hemos hemos implementado anteriormente, usando el bucle cerrado para poder reaccionar ante perturbaciones.
 El subsistema es:
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/0e6e9f09-4c8f-4698-9a6a-d80b247cbca2)
+![image](/fotos/im36.png)
 
 Y toma la referencia de velocidad de la rueda izquierda y derecha para realizar el control.
 
 #### MCI: Modelo Cinemático Inverso
 Antes del control le aplicaremos el jacobiano inverso para convertir la velocidad cartesiana local en la velocidad de avance de las ruedas.
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/a890f444-3b41-4a40-b2cd-9183587718e0)
+![image](/fotos/im37.png)
 
 #### MCD: Modelo Cinemático Directo
 Después del control le aplicaremos un modelo cinemático con el jacobiano directo para convertir la velocidad de las ruedas en velocidad cartesiana local.
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/5ed33e1e-624c-4c96-9f86-0ef2fc2e2b96)
+![image](/fotos/im38.png)
 
 Nota: Para la matriz de los jacobianos necesitamos un parámetro del piero, la distancia entre los ejes de las ruedas que, medida manualmente, establecemos que es $d = 0.22 m$
 
@@ -416,7 +416,7 @@ $$\dot{Y} = V_x \cdot sen\left(\alpha\right) - V_y \cdot cos\left(\alpha\right)$
 
 Y nos quedaría algo así:
 
-<img width="874" alt="Captura de pantalla 2024-01-11 a las 12 41 13" src="https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/c2776407-95d7-4846-96fb-2a8994a67ee4">
+<img width="874" alt="Captura de pantalla 2024-01-11 a las 12 41 13" src="/fotos/im39.png">
 
 #### Control del modelo (Simulación o Hardware)
 
@@ -425,7 +425,7 @@ Si ponemos como constantes de entrada:
   - Velocidad angular: $\frac{\pi}{5} rad/s$
 
 Y hacemos la simulación (durante unos 5 segundos), monitoreando el robot real, obtenemos lo que esperamos, el robot anda hacia adelante y gira a la izquierda, describiendo la siguiente trayectoria con la odometría:
-![image](https://github.com/Escuela-de-Ingenierias-Industriales/LaboratorioRobotica-lr2023grupo31/assets/145780547/50d40c8c-64dd-4f17-9ef3-ba5dc9d295b8)
+![image](/fotos/im40.png)
 
 También mostramos un video del comportamiento en el robot real
 
